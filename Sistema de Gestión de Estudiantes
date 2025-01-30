@@ -1,0 +1,201 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+ // 1. Crear una estructura llamada colegio que tenga los siguientes campos:
+
+    struct colegio
+    {
+        int id;
+        string nombre;
+        string apellido;
+        int edad = 0;
+        string materiaFavorita;
+    };
+    
+int main() {
+
+    int identificador = 1;
+
+    const int tamaño = 2;
+
+// 2. Crear un arreglo de la estructura colegio de tamaño 2.
+
+    colegio colegio[tamaño];
+    int opcion = 1;
+    int modificador = 0;
+    
+// 3. Crear un menú con las siguientes opciones:
+
+    do
+    {
+        cout << "\n Menu: \n" << endl;
+        cout << "1. Ingresar datos de los estudiantes" << endl;
+        cout << "2. Mostrar datos de los estudiantes" << endl;
+        cout << "3. Buscar un estudiante" << endl;
+        cout << "4. Salir" << endl;
+        cout << "Ingrese una opcion: ";
+        cin >> opcion;
+
+        cout << endl;
+
+// 4. Si el usuario elige la opción 1, el programa debe pedir al usuario que ingrese los datos de los estudiantes.
+
+        if (opcion == 1)
+        {
+            cin.ignore();
+            for (int  i = 0; i < tamaño; i++)
+            {
+                cout << "Estudiante " << i + 1 << ": " << endl;
+                colegio[i].id = identificador++;
+                cout << "ID: " << colegio[i].id << endl;
+                cout << "Ingrese el nombre del estudiante " << i + 1 << ": ";
+                getline(cin, colegio[i].nombre);
+                cout << "Ingrese el apellido del estudiante " << i + 1 << ": ";
+                getline(cin, colegio[i].apellido);
+                cout << "Ingrese la edad del estudiante " << i + 1 << ": ";
+                cin >> colegio[i].edad;
+                cin.ignore();
+                cout << "Ingrese la materia favorita del estudiante " << i + 1 << ": ";
+                getline(cin, colegio[i].materiaFavorita);
+                cout << endl;
+            }
+        }
+
+// 5. Si el usuario elige la opción 2, el programa debe mostrar los datos de los estudiantes.
+        
+        else if (opcion == 2)
+        {
+
+            for (int i = 0; i < tamaño; i++)
+            {
+                cout << "Estudiante " << i + 1 << ": " << endl;
+                cout << "Nombre: " << colegio[i].nombre << endl;
+                cout << "Apellido: " << colegio[i].apellido << endl;
+                cout << "Edad: " << colegio[i].edad << endl;
+                cout << "Materia favorita: " << colegio[i].materiaFavorita << endl;
+                cout << endl;                
+                
+            }
+        }
+
+// 6. Si el usuario elige la opción 3, el programa debe permitir al usuario buscar un estudiante por apellido y por ID.
+        
+        else if (opcion == 3){
+            cin.ignore();
+            string buscarApellido;
+            int buscarId;
+            cout << "Ingrese el apellido del estudiante a buscar: ";
+            getline(cin, buscarApellido);
+            cout << endl;
+
+            for (int i = 0; i < tamaño; i++)
+            {
+                if (buscarApellido == colegio[i].apellido)
+                
+                {
+                cout << "id: " << colegio[i].id << endl;
+                cout << "Apellido: " << colegio[i].apellido << endl;
+                cout << "Nombre: " << colegio[i].nombre << endl;
+                cout << endl;
+                }
+            }
+
+            cout << "Ingrese el ID del estudiante a buscar: ";
+            cin >> buscarId;
+            cout << endl;
+
+            for (int i = 0; i < tamaño; i++)
+            {
+                if (buscarApellido == colegio[i].apellido && buscarId == colegio[i].id)
+                {
+                    cout << "Estudiante " << i + 1 << ": " << endl;
+                    cout << "Nombre: " << colegio[i].nombre << endl;
+                    cout << "Apellido: " << colegio[i].apellido << endl;
+                    cout << "Edad: " << colegio[i].edad << endl;
+                    cout << "Materia favorita: " << colegio[i].materiaFavorita << endl;
+                    cout << endl;
+
+// 7. Si el usuario elige la opción 3, el programa debe permitir al usuario modificar los datos de un estudiante.
+
+            do
+            {
+                    cout << "\n Menu de modificacion: " << endl;
+                    cout << endl;
+                    cout << "1. Modificar nombre" << endl;
+                    cout << "2. Modificar apellido" << endl;
+                    cout << "3. Modificar edad" << endl;
+                    cout << "4. Modificar materia favorita" << endl;
+                    cout << "5. Salir" << endl;
+                    cout << endl;
+                    cout << "Ingrese una opcion: ";
+                    cin >> modificador;
+
+                    cout << endl;
+
+                    switch (modificador)
+                    {
+                    case 1:
+                        cin.ignore();
+                        cout << "Ingrese el nuevo nombre: ";
+                        getline(cin, colegio[i].nombre);
+                        cout << endl;
+                        break;
+                    case 2:
+                        cin.ignore();
+                        cout << "Ingrese el nuevo apellido: ";
+                        getline(cin, colegio[i].apellido);
+                        cout << endl;
+                        break;
+                    case 3:
+                        cout << "Ingrese la nueva edad: ";
+                        cin >> colegio[i].edad;
+                        cout << endl;
+                        break;
+                    case 4:
+                        cin.ignore();
+                        cout << "Ingrese la nueva materia favorita: ";
+                        getline(cin, colegio[i].materiaFavorita);
+                        cout << endl;
+                        break;
+                    case 5:
+                        cout << "Saliendo..." << endl;
+                        break;
+                }
+        if (modificador > 0 && modificador < 5)
+        {
+            cout << "Estudiante " << i + 1 << ": " << endl;
+            cout << "Nombre: " << colegio[i].nombre << endl;
+            cout << "Apellido: " << colegio[i].apellido << endl;
+            cout << "Edad: " << colegio[i].edad << endl;
+            cout << "Materia favorita: " << colegio[i].materiaFavorita << endl;
+        }
+
+// 8. El programa debe mostrar los datos del estudiante modificado.
+
+            } while (modificador != 5);
+
+            }
+        }
+
+// 9. Si el usuario elige la opción 4, el programa debe salir.
+
+        }else if (opcion == 4)
+        {
+             cout << "Saliendo..." << endl;
+             break;
+            
+// 10. Si el usuario elige una opción inválida, el programa debe mostrar un mensaje de error y volver a mostrar el menú principal.
+        
+        }else
+        {
+            cout << "Opcion invalida. Intente de nuevo" << endl;
+        }
+
+// 11. El programa debe repetir los pasos 3 al 10 hasta que el usuario elija la opción 4.
+
+    } while (opcion != 4);
+
+    return 0;
+}
