@@ -1,0 +1,194 @@
+  #include <iostream>
+  #include <string>
+  
+  using namespace std;
+
+// 1. Create a structure called school that has the following fields:
+    struct school
+    {
+        int id;
+        string name;
+        string surname;
+        int age = 0;
+        string favoriteSubject;
+    };
+    
+    int main() {
+    
+        int identifier = 1;
+    
+        const int size = 2;
+
+// 2. Create an array of the school structure of size 2.
+    school school[size];
+    int option = 1;
+    int modifier = 0;
+
+// 3. Create a menu with the following options:
+    do
+    {
+        cout << "\n Menu: \n" << endl;
+        cout << "1. Enter student data" << endl;
+        cout << "2. Show student data" << endl;
+        cout << "3. Search for a student" << endl;
+        cout << "4. Exit" << endl;
+        cout << "Enter an option: ";
+        cin >> option;
+
+        cout << endl;
+
+// 4. If the user chooses option 1, the program should ask the user to enter the student data.
+        if (option == 1)
+        {
+            cin.ignore();
+            for (int i = 0; i < size; i++)
+            {
+                cout << "Student " << i + 1 << ": " << endl;
+                school[i].id = identifier++;
+                cout << "ID: " << school[i].id << endl;
+                cout << "Enter the name of student " << i + 1 << ": ";
+                getline(cin, school[i].name);
+                cout << "Enter the surname of student " << i + 1 << ": ";
+                getline(cin, school[i].surname);
+                cout << "Enter the age of student " << i + 1 << ": ";
+                cin >> school[i].age;
+                cin.ignore();
+                cout << "Enter the favorite subject of student " << i + 1 << ": ";
+                getline(cin, school[i].favoriteSubject);
+                cout << endl;
+            }
+        }
+
+// 5. If the user chooses option 2, the program should display the student data.
+
+        else if (option == 2)
+        {
+
+            for (int i = 0; i < size; i++)
+            {
+                cout << "Student " << i + 1 << ": " << endl;
+                cout << "Name: " << school[i].name << endl;
+                cout << "Surname: " << school[i].surname << endl;
+                cout << "Age: " << school[i].age << endl;
+                cout << "Favorite subject: " << school[i].favoriteSubject << endl;
+                cout << endl;
+            }
+        }
+
+// 6. If the user chooses option 3, the program should allow the user to search for a student by surname and ID.
+
+        else if (option == 3){
+            cin.ignore();
+            string searchSurname;
+            int searchId;
+            cout << "Enter the surname of the student to search: ";
+            getline(cin, searchSurname);
+            cout << endl;
+
+            for (int i = 0; i < size; i++)
+            {
+                if (searchSurname == school[i].surname)
+                {
+                    cout << "ID: " << school[i].id << endl;
+                    cout << "Surname: " << school[i].surname << endl;
+                    cout << "Name: " << school[i].name << endl;
+                    cout << endl;
+                }
+            }
+
+            cout << "Enter the ID of the student to search: ";
+            cin >> searchId;
+            cout << endl;
+
+            for (int i = 0; i < size; i++)
+            {
+                if (searchSurname == school[i].surname && searchId == school[i].id)
+                {
+                    cout << "Student " << i + 1 << ": " << endl;
+                    cout << "Name: " << school[i].name << endl;
+                    cout << "Surname: " << school[i].surname << endl;
+                    cout << "Age: " << school[i].age << endl;
+                    cout << "Favorite subject: " << school[i].favoriteSubject << endl;
+                    cout << endl;
+
+// 7. If the user chooses option 3, the program should allow the user to modify the student data.
+            do
+            {
+                    cout << "\n Modification menu: " << endl;
+                    cout << endl;
+                    cout << "1. Modify name" << endl;
+                    cout << "2. Modify surname" << endl;
+                    cout << "3. Modify age" << endl;
+                    cout << "4. Modify favorite subject" << endl;
+                    cout << "5. Exit" << endl;
+                    cout << endl;
+                    cout << "Enter an option: ";
+                    cin >> modifier;
+
+                    cout << endl;
+
+                    switch (modifier)
+                    {
+                    case 1:
+                        cin.ignore();
+                        cout << "Enter the new name: ";
+                        getline(cin, school[i].name);
+                        cout << endl;
+                        break;
+                    case 2:
+                        cin.ignore();
+                        cout << "Enter the new surname: ";
+                        getline(cin, school[i].surname);
+                        cout << endl;
+                        break;
+                    case 3:
+                        cout << "Enter the new age: ";
+                        cin >> school[i].age;
+                        cout << endl;
+                        break;
+                    case 4:
+                        cin.ignore();
+                        cout << "Enter the new favorite subject: ";
+                        getline(cin, school[i].favoriteSubject);
+                        cout << endl;
+                        break;
+                    case 5:
+                        cout << "Exiting..." << endl;
+                        break;
+                }
+        if (modifier > 0 && modifier < 5)
+        {
+            cout << "Student " << i + 1 << ": " << endl;
+            cout << "Name: " << school[i].name << endl;
+            cout << "Surname: " << school[i].surname << endl;
+            cout << "Age: " << school[i].age << endl;
+            cout << "Favorite subject: " << school[i].favoriteSubject << endl;
+        }
+
+// 8. The program should display the modified student data.
+
+            } while (modifier != 5);
+
+            }
+        }
+
+// 9. If the user chooses option 4, the program should exit.
+
+        }else if (option == 4)
+        {
+             cout << "Exiting..." << endl;
+             break;
+
+// 10. If the user chooses an invalid option, the program should display an error message and show the main menu again.
+
+        }else
+        {
+            cout << "Invalid option. Try again" << endl;
+        }
+
+// 11. The program should repeat steps 3 to 10 until the user chooses option 4.
+
+        } while (option != 4);
+
+    return 0;
+}
